@@ -1,0 +1,30 @@
+name: "scaffold build"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Build with stellar scaffold
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install stellar-scaffold CLI
+        run: cargo install --locked stellar-scaffold-cli
+
+      - name: Run stellar scaffold build
+        # Add --no-interactive to ensure CI runs non-interactively.
+        run: stellar scaffold build
