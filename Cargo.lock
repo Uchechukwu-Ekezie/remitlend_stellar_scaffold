@@ -823,9 +823,8 @@ checksum = "f9fbbcab51052fe104eb5e5d351cf728d30a5be1fe14d9be8a3b097481fb97de"
 name = "loan_manager"
 version = "0.0.1"
 dependencies = [
+ "remittance_nft",
  "soroban-sdk",
- "stellar-registry",
- "stellar-xdr",
 ]
 
 [[package]]

@@ -37,6 +37,24 @@ pub enum DataKey {
     MonitoredLoans(u64),            // loan_id -> bool (is being monitored)
 }
 
+mod remittance {
+    soroban_sdk::contractimport!(
+        file = "../../target/stellar/local/remittance_nft.wasm"
+    );
+}
+
+mod nft {
+    soroban_sdk::contractimport!(
+        file = "../../target/stellar/local/remittance_nft.wasm"
+    );
+}
+
+mod loan_manager {
+    soroban_sdk::contractimport!(
+        file = "../../target/stellar/local/loan_manager.wasm"
+    );
+}
+
 #[contract]
 pub struct OracleVerifier;
 
@@ -89,7 +107,7 @@ impl OracleVerifier {
         monthly_amount: i128,
         history_months: u32,
         total_sent: i128,
-        payment_history: Vec<PaymentRecord>,
+        payment_history: Vec<remittance::PaymentRecord>,
     ) {
         // Verify operator is authorized
         Self::verify_operator(&env, &operator);
@@ -108,15 +126,15 @@ impl OracleVerifier {
         let nft_contract: Address = env.storage().instance().get(&DataKey::RemittanceNFTContract).unwrap();
         
         // In real implementation:
-        // let nft_client = RemittanceNFTClient::new(&env, &nft_contract);
-        // let token_id = nft_client.mint(
-        //     &user,
-        //     &monthly_amount,
-        //     &reliability_score,
-        //     &history_months,
-        //     &total_sent,
-        //     &payment_history,
-        // );
+        let nft_client = remittance::Client::new(&env, &nft_contract);
+        let token_id = nft_client.mint(
+            &user,
+            &monthly_amount,
+            &reliability_score,
+            &history_months,
+            &total_sent,
+            &payment_history,
+        );
         
         // Update request status
         request.status = VerificationStatus::Verified;
@@ -156,10 +174,16 @@ impl OracleVerifier {
         
         // Update NFT with new remittance
         let nft_contract: Address = env.storage().instance().get(&DataKey::RemittanceNFTContract).unwrap();
-        // nft_contract.update_remittance_data(nft_id, amount, updated_total)
+        let nft_client = nft::Client::new(&env, &nft_contract);
+
+        nft_client.update_remittance_data(&nft_id, &amount, &0_i128); 
+
         
         // Process automatic repayment through LoanManager
         let loan_manager: Address = env.storage().instance().get(&DataKey::LoanManagerContract).unwrap();
+        let loan_manager_client = loan_manager::Client::new(&env, &loan_manager);
+
+        loan_manager_client.process_automatic_repayment(&loan_id, &amount);
         // let remaining = loan_manager.process_automatic_repayment(loan_id, amount)
         
         env.events().publish(("remittance_reported", loan_id, nft_id), amount);
@@ -177,11 +201,16 @@ impl OracleVerifier {
         
         // Update NFT
         let nft_contract: Address = env.storage().instance().get(&DataKey::RemittanceNFTContract).unwrap();
+        let nft_client = nft::Client::new(&env, &nft_contract);
+        
         // nft_contract.mark_payment_missed(nft_id)
+        nft_client.mark_payment_missed(&nft_id);
         
         // Update loan
         let loan_manager: Address = env.storage().instance().get(&DataKey::LoanManagerContract).unwrap();
-        // loan_manager.mark_payment_missed(loan_id)
+        let loan_manager_client = loan_manager::Client::new(&env, &loan_manager);
+        
+        loan_manager_client.mark_payment_missed(&loan_id);
         
         env.events().publish(("payment_missed_reported", loan_id), nft_id);
     }
@@ -210,7 +239,7 @@ impl OracleVerifier {
     }
     
     // Internal: Calculate reliability score from payment history
-    fn calculate_reliability_score(payment_history: &Vec<PaymentRecord>) -> u32 {
+    fn calculate_reliability_score(payment_history: &Vec<remittance::PaymentRecord>) -> u32 {
         let mut paid_count = 0u32;
         let total_count = payment_history.len() as u32;
         

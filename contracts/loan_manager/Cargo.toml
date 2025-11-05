@@ -16,9 +16,12 @@ crate-type = ["cdylib"]
 doctest = false
 
 [dependencies]
-soroban-sdk = "23.0.3"
-stellar-registry = "0.0.4"
+ soroban-sdk = "23.0.3"
+#soroban-sdk = { workspace = true }
+#remittance_nft = { workspace = true }
+# stellar-registry = "0.0.4"
+remittance_nft = { path = "../remittance_nft" }
 
-[dev-dependencies]
-stellar-xdr = { version = "23.0.0", features = ["curr", "serde"] }
-soroban-sdk = { version = "23.0.3", features = ["testutils"] }
+#[dev-dependencies]
+#stellar-xdr = { version = "23.0.0", features = ["curr", "serde"] }
+#soroban-sdk = { version = "23.0.3", features = ["testutils"] }
