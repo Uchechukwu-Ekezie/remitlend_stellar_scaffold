@@ -32,8 +32,8 @@ const LandingPage: React.FC = () => {
       <header className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 mb-8 glass rounded-full border border-indigo-500/30 shadow-lg shadow-indigo-500/20 backdrop-blur-xl">
-            <Sparkles className="w-5 h-5 text-indigo-400" />
+          <div className="inline-flex items-center gap-2 px-6 py-3 mb-8 glass rounded-full border border-indigo-500/30 dark:border-indigo-500/30 shadow-lg shadow-indigo-500/20 dark:shadow-indigo-500/20 backdrop-blur-xl">
+            <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
             <span className="text-sm font-semibold text-gradient-cyber">
               Powered by Stellar Blockchain
             </span>
@@ -41,18 +41,22 @@ const LandingPage: React.FC = () => {
 
           {/* Main Headline */}
           <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-none">
-            <span className="block text-white mb-2">Turn</span>
+            <span className="block text-gray-900 dark:text-white mb-2">
+              Turn
+            </span>
             <span className="block text-gradient-cyber">Remittance</span>
-            <span className="block text-white">Into Capital</span>
+            <span className="block text-gray-900 dark:text-white">
+              Into Capital
+            </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-slate-300 mb-6 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-white mb-6 max-w-3xl mx-auto leading-relaxed">
             The first decentralized lending platform where your remittance
             history becomes your credit score
           </p>
 
-          <p className="text-lg text-cyan-400 font-medium mb-12">
+          <p className="text-lg text-cyan-600 dark:text-cyan-400 font-medium mb-12">
             No traditional credit check • Instant verification • Automatic
             repayments
           </p>
@@ -78,7 +82,7 @@ const LandingPage: React.FC = () => {
               onClick={() => {
                 void navigate("/borrow");
               }}
-              className="px-10 py-5 glass rounded-2xl font-bold text-white text-lg border border-white/20 hover:border-white/40 hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
+              className="px-10 py-5 glass rounded-2xl font-bold text-gray-900 dark:text-white text-lg border border-gray-300 dark:border-white/20 hover:border-gray-400 dark:hover:border-white/40 hover:bg-gray-100 dark:hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
             >
               View Dashboard
             </button>
@@ -93,12 +97,14 @@ const LandingPage: React.FC = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="glass rounded-2xl p-6 border border-white/10 backdrop-blur-xl card-shine"
+                className="glass rounded-2xl p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl card-shine"
               >
                 <div className="text-4xl font-bold text-gradient-cyber mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
+                <div className="text-sm text-gray-600 dark:text-white">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -111,7 +117,7 @@ const LandingPage: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 mb-32">
           {/* Borrowers Card */}
           <div className="group relative card-shine">
-            <div className="glass rounded-3xl p-10 border border-white/10 hover:border-indigo-500/50 transition-all duration-500 backdrop-blur-xl h-full">
+            <div className="glass rounded-3xl p-10 border border-gray-300 dark:border-white/10 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all duration-500 backdrop-blur-xl h-full">
               {/* Gradient Orb */}
               <div className="absolute top-8 right-8 w-32 h-32 bg-linear-to-br from-indigo-500 to-purple-600 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
 
@@ -120,10 +126,10 @@ const LandingPage: React.FC = () => {
                   <DollarSign className="w-10 h-10 text-white" />
                 </div>
 
-                <h2 className="text-4xl font-bold text-white mb-4">
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                   For Borrowers
                 </h2>
-                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                <p className="text-gray-700 dark:text-white text-lg mb-8 leading-relaxed">
                   Transform your remittance history into instant collateral. No
                   credit checks, no paperwork.
                 </p>
@@ -137,7 +143,7 @@ const LandingPage: React.FC = () => {
                   ].map((feature, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 text-slate-300"
+                      className="flex items-start gap-3 text-gray-700 dark:text-white"
                     >
                       <div className="w-6 h-6 bg-indigo-500/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
                         <svg
@@ -175,7 +181,7 @@ const LandingPage: React.FC = () => {
 
           {/* Lenders Card */}
           <div className="group relative card-shine">
-            <div className="glass rounded-3xl p-10 border border-white/10 hover:border-cyan-500/50 transition-all duration-500 backdrop-blur-xl h-full">
+            <div className="glass rounded-3xl p-10 border border-gray-300 dark:border-white/10 hover:border-cyan-500/50 dark:hover:border-cyan-500/50 transition-all duration-500 backdrop-blur-xl h-full">
               {/* Gradient Orb */}
               <div className="absolute top-8 right-8 w-32 h-32 bg-linear-to-br from-cyan-500 to-emerald-600 rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
 
@@ -184,10 +190,10 @@ const LandingPage: React.FC = () => {
                   <TrendingUp className="w-10 h-10 text-white" />
                 </div>
 
-                <h2 className="text-4xl font-bold text-white mb-4">
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                   For Lenders
                 </h2>
-                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                <p className="text-gray-700 dark:text-white text-lg mb-8 leading-relaxed">
                   Earn competitive yields by providing liquidity to verified
                   borrowers.
                 </p>
@@ -201,7 +207,7 @@ const LandingPage: React.FC = () => {
                   ].map((feature, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 text-slate-300"
+                      className="flex items-start gap-3 text-gray-700 dark:text-white"
                     >
                       <div className="w-6 h-6 bg-cyan-500/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
                         <svg
@@ -241,10 +247,10 @@ const LandingPage: React.FC = () => {
         {/* How It Works */}
         <section className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               How It <span className="text-gradient-cyber">Works</span>
             </h2>
-            <p className="text-2xl text-slate-400">
+            <p className="text-2xl text-gray-700 dark:text-white">
               Four simple steps to financial freedom
             </p>
           </div>
@@ -292,7 +298,7 @@ const LandingPage: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="group glass rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 backdrop-blur-xl card-shine hover:-translate-y-2"
+                  className="group glass rounded-3xl p-8 border border-gray-300 dark:border-white/10 hover:border-gray-400 dark:hover:border-white/20 transition-all duration-500 backdrop-blur-xl card-shine hover:-translate-y-2"
                 >
                   <div
                     className={`w-16 h-16 bg-linear-to-br ${step.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg ${step.glow} group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
@@ -306,10 +312,10 @@ const LandingPage: React.FC = () => {
                     {step.number}
                   </div>
 
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed">
+                  <p className="text-gray-700 dark:text-white leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -319,15 +325,15 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* Final CTA */}
-        <section className="relative glass rounded-3xl p-16 text-center border border-white/10 backdrop-blur-xl overflow-hidden">
+        <section className="relative glass rounded-3xl p-16 text-center border border-gray-300 dark:border-white/10 backdrop-blur-xl overflow-hidden">
           <div className="absolute inset-0 bg-linear-to-r from-indigo-600/20 via-purple-600/20 to-cyan-600/20 animate-gradient"></div>
 
           <div className="relative z-10">
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Ready to <span className="text-gradient-cyber">Transform</span>{" "}
               Your Future?
             </h2>
-            <p className="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-700 dark:text-white mb-10 max-w-2xl mx-auto">
               Join thousands of users leveraging their remittance history for
               instant capital
             </p>
@@ -347,26 +353,26 @@ const LandingPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="relative text-center py-12 px-4 mt-20">
-        <div className="glass rounded-2xl p-8 max-w-4xl mx-auto border border-white/10 backdrop-blur-xl">
-          <p className="text-slate-400">
+        <div className="glass rounded-2xl p-8 max-w-4xl mx-auto border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+          <p className="text-gray-700 dark:text-white">
             © 2025 RemitLend. All rights reserved. Built on Stellar Blockchain.
           </p>
           <div className="flex justify-center gap-6 mt-4">
             <a
               href="#"
-              className="text-slate-500 hover:text-indigo-400 transition-colors"
+              className="text-gray-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               Privacy
             </a>
             <a
               href="#"
-              className="text-slate-500 hover:text-indigo-400 transition-colors"
+              className="text-gray-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               Terms
             </a>
             <a
               href="#"
-              className="text-slate-500 hover:text-indigo-400 transition-colors"
+              className="text-gray-600 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             >
               Docs
             </a>

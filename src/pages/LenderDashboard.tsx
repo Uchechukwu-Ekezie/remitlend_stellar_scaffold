@@ -111,12 +111,12 @@ const LenderDashboard: React.FC = () => {
   if (!connected) {
     return (
       <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
-        <div className="glass rounded-2xl shadow-strong p-12 text-center max-w-md border border-white/10 backdrop-blur-xl">
+        <div className="glass rounded-2xl shadow-strong p-12 text-center max-w-md border border-gray-300 dark:border-white/10 backdrop-blur-xl">
           <AlertCircle className="w-16 h-16 text-warning-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Please Connect Your Wallet
           </h2>
-          <p className="text-slate-400">
+          <p className="text-gray-700 dark:text-white">
             Connect your wallet to access the Lender Dashboard
           </p>
         </div>
@@ -150,17 +150,17 @@ const LenderDashboard: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Lender Dashboard
           </h1>
-          <p className="text-slate-400 font-mono text-sm">
+          <p className="text-gray-700 dark:text-white font-mono text-sm">
             {publicKey?.substring(0, 8)}...
             {publicKey?.substring(publicKey.length - 6)}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b-2 border-white/10">
+        <div className="flex gap-2 mb-8 border-b-2 border-gray-300 dark:border-white/10">
           {[
             { key: "overview", label: "Overview" },
             { key: "deposit", label: "Deposit" },
@@ -173,7 +173,7 @@ const LenderDashboard: React.FC = () => {
               className={`px-6 py-3 font-semibold transition-all duration-200 border-b-3 ${
                 activeTab === tab.key
                   ? "text-cyan-400 border-cyan-400"
-                  : "text-slate-400 border-transparent hover:text-white"
+                  : "text-gray-700 dark:text-white border-transparent hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {tab.label}
@@ -185,8 +185,8 @@ const LenderDashboard: React.FC = () => {
         {activeTab === "overview" && (
           <div className="space-y-8">
             {/* Pool Statistics */}
-            <div className="glass rounded-xl shadow-soft p-6 border border-white/10 backdrop-blur-xl">
-              <h2 className="text-2xl font-bold text-white mb-6">
+            <div className="glass rounded-xl shadow-soft p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Pool Statistics
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -220,7 +220,7 @@ const LenderDashboard: React.FC = () => {
                   return (
                     <div
                       key={index}
-                      className="glass rounded-xl p-6 group hover:shadow-md transition-all duration-300 border border-white/10 backdrop-blur-xl card-shine"
+                      className="glass rounded-xl p-6 group hover:shadow-md transition-all duration-300 border border-gray-300 dark:border-white/10 backdrop-blur-xl card-shine"
                     >
                       <div className="flex items-start gap-4">
                         <div
@@ -229,10 +229,10 @@ const LenderDashboard: React.FC = () => {
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm text-slate-400 mb-1">
+                          <p className="text-sm text-gray-700 dark:text-white mb-1">
                             {stat.label}
                           </p>
-                          <p className="text-2xl font-bold text-white">
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white">
                             {stat.value}
                           </p>
                         </div>
@@ -244,16 +244,16 @@ const LenderDashboard: React.FC = () => {
             </div>
 
             {/* User Position */}
-            <div className="glass rounded-xl shadow-soft p-6 border border-white/10 backdrop-blur-xl">
-              <h2 className="text-2xl font-bold text-white mb-6">
+            <div className="glass rounded-xl shadow-soft p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Your Position
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="glass bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-xl p-6 border border-emerald-500/20">
-                  <h3 className="text-slate-300 text-sm font-medium mb-2">
+                  <h3 className="text-gray-700 dark:text-white text-sm font-medium mb-2">
                     Total Value
                   </h3>
-                  <p className="text-4xl font-bold text-white mb-6">
+                  <p className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
                     ${userPosition.totalValue.toLocaleString()}
                   </p>
                   <div className="space-y-3">
@@ -276,9 +276,9 @@ const LenderDashboard: React.FC = () => {
                     ].map((item, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center glass bg-white/5 rounded-lg p-3 border border-white/10"
+                        className="flex justify-between items-center glass bg-white/5 dark:bg-white/5 rounded-lg p-3 border border-gray-300 dark:border-white/10"
                       >
-                        <span className="text-slate-300 font-medium">
+                        <span className="text-gray-700 dark:text-white font-medium">
                           {item.label}:
                         </span>
                         <span className={`font-bold ${item.color}`}>
@@ -289,7 +289,7 @@ const LenderDashboard: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center glass bg-white/5 rounded-xl p-6 border border-white/10">
+                <div className="flex items-center justify-center glass bg-white/5 dark:bg-white/5 rounded-xl p-6 border border-gray-300 dark:border-white/10">
                   <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
                       <Pie
@@ -324,8 +324,8 @@ const LenderDashboard: React.FC = () => {
             </div>
 
             {/* Performance Chart */}
-            <div className="glass rounded-xl shadow-soft p-6 border border-white/10 backdrop-blur-xl">
-              <h3 className="text-xl font-bold text-white mb-6">
+            <div className="glass rounded-xl shadow-soft p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                 Historical Performance
               </h3>
               <ResponsiveContainer width="100%" height={300}>
@@ -356,27 +356,27 @@ const LenderDashboard: React.FC = () => {
             </div>
 
             {/* Active Loans Portfolio */}
-            <div className="glass rounded-xl shadow-soft p-6 border border-white/10 backdrop-blur-xl">
-              <h2 className="text-2xl font-bold text-white mb-6">
+            <div className="glass rounded-xl shadow-soft p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Active Loans in Portfolio
               </h2>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b-2 border-white/10">
-                      <th className="text-left py-4 px-4 font-semibold text-slate-300">
+                    <tr className="border-b-2 border-gray-300 dark:border-white/10">
+                      <th className="text-left py-4 px-4 font-semibold text-gray-700 dark:text-white">
                         Loan ID
                       </th>
-                      <th className="text-left py-4 px-4 font-semibold text-slate-300">
+                      <th className="text-left py-4 px-4 font-semibold text-gray-700 dark:text-white">
                         Borrower
                       </th>
-                      <th className="text-left py-4 px-4 font-semibold text-slate-300">
+                      <th className="text-left py-4 px-4 font-semibold text-gray-700 dark:text-white">
                         Amount
                       </th>
-                      <th className="text-left py-4 px-4 font-semibold text-slate-300">
+                      <th className="text-left py-4 px-4 font-semibold text-gray-700 dark:text-white">
                         Interest Rate
                       </th>
-                      <th className="text-left py-4 px-4 font-semibold text-slate-300">
+                      <th className="text-left py-4 px-4 font-semibold text-gray-700 dark:text-white">
                         Status
                       </th>
                     </tr>
@@ -385,18 +385,18 @@ const LenderDashboard: React.FC = () => {
                     {activeLoans.map((loan) => (
                       <tr
                         key={loan.loanId}
-                        className="border-b border-white/10 hover:bg-white/5 transition-colors"
+                        className="border-b border-gray-300 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
                       >
-                        <td className="py-4 px-4 font-medium text-white">
+                        <td className="py-4 px-4 font-medium text-gray-900 dark:text-white">
                           #{loan.loanId}
                         </td>
-                        <td className="py-4 px-4 font-mono text-sm text-slate-400">
+                        <td className="py-4 px-4 font-mono text-sm text-gray-700 dark:text-white">
                           {loan.borrower}
                         </td>
-                        <td className="py-4 px-4 font-semibold text-white">
+                        <td className="py-4 px-4 font-semibold text-gray-900 dark:text-white">
                           ${loan.amount.toLocaleString()}
                         </td>
-                        <td className="py-4 px-4 text-slate-300">
+                        <td className="py-4 px-4 text-gray-700 dark:text-white">
                           {loan.interestRate}%
                         </td>
                         <td className="py-4 px-4">
@@ -416,20 +416,22 @@ const LenderDashboard: React.FC = () => {
         {/* Deposit Tab */}
         {activeTab === "deposit" && (
           <div className="max-w-2xl mx-auto">
-            <div className="glass rounded-2xl shadow-strong p-8 border border-white/10 backdrop-blur-xl">
+            <div className="glass rounded-2xl shadow-strong p-8 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/50">
                   <ArrowUpCircle className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-white">Deposit USDC</h2>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                  Deposit USDC
+                </h2>
               </div>
-              <p className="text-slate-300 leading-relaxed mb-8">
+              <p className="text-gray-700 dark:text-white leading-relaxed mb-8">
                 Deposit USDC into the lending pool to earn interest. Your funds
                 will be used to provide loans to borrowers.
               </p>
 
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-300 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                   Amount (USDC)
                 </label>
                 <input
@@ -437,9 +439,9 @@ const LenderDashboard: React.FC = () => {
                   value={depositAmount}
                   onChange={(e) => setDepositAmount(e.target.value)}
                   placeholder="0.00"
-                  className="w-full text-3xl font-bold p-4 glass bg-white/5 border-2 border-white/20 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 outline-none transition-all text-white placeholder:text-slate-500"
+                  className="w-full text-3xl font-bold p-4 glass bg-white/5 dark:bg-white/5 border-2 border-gray-300 dark:border-white/20 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-500"
                 />
-                <p className="text-sm text-slate-400 mt-2">
+                <p className="text-sm text-gray-700 dark:text-white mt-2">
                   Available Balance: 100,000 USDC
                 </p>
               </div>
@@ -447,7 +449,9 @@ const LenderDashboard: React.FC = () => {
               <div className="glass bg-emerald-500/10 border-l-4 border-emerald-500 rounded-xl p-6 mb-6">
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-300">Current APY:</span>
+                    <span className="text-gray-700 dark:text-white">
+                      Current APY:
+                    </span>
                     <span className="text-xl font-bold text-emerald-400">
                       {poolStats.currentAPY}%
                     </span>
@@ -489,20 +493,22 @@ const LenderDashboard: React.FC = () => {
         {/* Withdraw Tab */}
         {activeTab === "withdraw" && (
           <div className="max-w-2xl mx-auto">
-            <div className="glass rounded-2xl shadow-strong p-8 border border-white/10 backdrop-blur-xl">
+            <div className="glass rounded-2xl shadow-strong p-8 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/50">
                   <ArrowDownCircle className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-white">Withdraw USDC</h2>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                  Withdraw USDC
+                </h2>
               </div>
-              <p className="text-slate-300 leading-relaxed mb-8">
+              <p className="text-gray-700 dark:text-white leading-relaxed mb-8">
                 Withdraw your deposited USDC and earned interest from the
                 lending pool.
               </p>
 
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-300 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 dark:text-white mb-2">
                   Amount (USDC)
                 </label>
                 <input
@@ -511,9 +517,9 @@ const LenderDashboard: React.FC = () => {
                   onChange={(e) => setWithdrawAmount(e.target.value)}
                   placeholder="0.00"
                   max={userPosition.totalValue}
-                  className="w-full text-3xl font-bold p-4 glass bg-white/5 border-2 border-white/20 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all text-white placeholder:text-slate-500"
+                  className="w-full text-3xl font-bold p-4 glass bg-white/5 dark:bg-white/5 border-2 border-gray-300 dark:border-white/20 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-500"
                 />
-                <p className="text-sm text-slate-400 mt-2">
+                <p className="text-sm text-gray-700 dark:text-white mt-2">
                   Available to Withdraw: $
                   {userPosition.totalValue.toLocaleString()} USDC
                 </p>
@@ -536,17 +542,19 @@ const LenderDashboard: React.FC = () => {
                     key={index}
                     className="flex justify-between items-center py-3 border-b border-white/10 last:border-0"
                   >
-                    <span className="text-slate-300">{item.label}:</span>
+                    <span className="text-gray-700 dark:text-white">
+                      {item.label}:
+                    </span>
                     <span className={`font-bold ${item.color}`}>
                       {item.value}
                     </span>
                   </div>
                 ))}
                 <div className="flex justify-between items-center pt-4 border-t-2 border-indigo-500">
-                  <span className="text-white font-semibold">
+                  <span className="text-gray-900 dark:text-white font-semibold">
                     Total Available:
                   </span>
-                  <span className="text-2xl font-bold text-white">
+                  <span className="text-2xl font-bold text-gray-900 dark:text-white">
                     ${userPosition.totalValue.toLocaleString()}
                   </span>
                 </div>

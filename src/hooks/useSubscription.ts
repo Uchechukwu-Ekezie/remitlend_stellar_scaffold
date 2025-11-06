@@ -78,7 +78,10 @@ export function useSubscription(
                 error,
               );
             } finally {
-              paging[id].pagingToken = event.pagingToken;
+              // Update paging token from response if available
+              if (response.latestLedger) {
+                paging[id].pagingToken = response.latestLedger.toString();
+              }
             }
           });
         }

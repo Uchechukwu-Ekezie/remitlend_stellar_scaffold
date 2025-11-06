@@ -81,12 +81,12 @@ const BorrowerDashboard: React.FC = () => {
   if (!connected) {
     return (
       <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
-        <div className="glass rounded-2xl shadow-strong p-12 text-center max-w-md border border-white/10 backdrop-blur-xl">
+        <div className="glass rounded-2xl shadow-strong p-12 text-center max-w-md border border-gray-300 dark:border-white/10 backdrop-blur-xl">
           <AlertCircle className="w-16 h-16 text-warning-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-white mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Please Connect Your Wallet
           </h2>
-          <p className="text-slate-400">
+          <p className="text-gray-700 dark:text-white">
             Connect your wallet to access the Borrower Dashboard
           </p>
         </div>
@@ -118,17 +118,17 @@ const BorrowerDashboard: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
             Borrower Dashboard
           </h1>
-          <p className="text-slate-400 font-mono text-sm">
+          <p className="text-gray-700 dark:text-white font-mono text-sm">
             {publicKey?.substring(0, 8)}...
             {publicKey?.substring(publicKey.length - 6)}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b-2 border-white/10">
+        <div className="flex gap-2 mb-8 border-b-2 border-gray-300 dark:border-white/10">
           {[
             { key: "overview", label: "Overview" },
             { key: "loans", label: "My Loans" },
@@ -141,7 +141,7 @@ const BorrowerDashboard: React.FC = () => {
               className={`px-6 py-3 font-semibold transition-all duration-200 border-b-3 ${
                 activeTab === tab.key
                   ? "text-indigo-400 border-indigo-400"
-                  : "text-slate-400 border-transparent hover:text-white"
+                  : "text-gray-700 dark:text-white border-transparent hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {tab.label}
@@ -184,7 +184,7 @@ const BorrowerDashboard: React.FC = () => {
                 return (
                   <div
                     key={index}
-                    className="glass rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 p-6 group border border-white/10 backdrop-blur-xl card-shine"
+                    className="glass rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 p-6 group border border-gray-300 dark:border-white/10 backdrop-blur-xl card-shine"
                   >
                     <div className="flex items-start gap-4">
                       <div
@@ -193,10 +193,10 @@ const BorrowerDashboard: React.FC = () => {
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm text-slate-400 mb-1">
+                        <p className="text-sm text-gray-700 dark:text-white mb-1">
                           {stat.label}
                         </p>
-                        <p className="text-2xl font-bold text-white">
+                        <p className="text-2xl font-bold text-gray-900 dark:text-white">
                           {stat.value}
                         </p>
                       </div>
@@ -207,8 +207,8 @@ const BorrowerDashboard: React.FC = () => {
             </div>
 
             {/* Chart Card */}
-            <div className="glass rounded-xl shadow-soft p-6 border border-white/10 backdrop-blur-xl">
-              <h3 className="text-xl font-bold text-white mb-6">
+            <div className="glass rounded-xl shadow-soft p-6 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                 Payment History (Last 8 Months)
               </h3>
               <ResponsiveContainer width="100%" height={300}>
@@ -245,10 +245,10 @@ const BorrowerDashboard: React.FC = () => {
             {loans.map((loan) => (
               <div
                 key={loan.loanId}
-                className="glass rounded-xl shadow-soft p-8 border border-white/10 backdrop-blur-xl card-shine"
+                className="glass rounded-xl shadow-soft p-8 border border-gray-300 dark:border-white/10 backdrop-blur-xl card-shine"
               >
                 <div className="flex justify-between items-start mb-6">
-                  <h3 className="text-2xl font-bold text-white">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                     Loan #{loan.loanId}
                   </h3>
                   <span className="px-4 py-2 bg-success-500/20 text-success-400 rounded-full text-sm font-semibold border border-success-500/30">
@@ -287,28 +287,28 @@ const BorrowerDashboard: React.FC = () => {
                     ].map((item, index) => (
                       <div
                         key={index}
-                        className="flex justify-between py-3 border-b border-white/10"
+                        className="flex justify-between py-3 border-b border-gray-300 dark:border-white/10"
                       >
-                        <span className="text-slate-400 font-medium">
+                        <span className="text-gray-700 dark:text-white font-medium">
                           {item.label}:
                         </span>
-                        <span className="text-white font-semibold">
+                        <span className="text-gray-900 dark:text-white font-semibold">
                           {item.value}
                         </span>
                       </div>
                     ))}
                   </div>
                   <div className="flex flex-col justify-center">
-                    <p className="text-sm font-semibold text-slate-300 mb-3">
+                    <p className="text-sm font-semibold text-gray-700 dark:text-white mb-3">
                       Repayment Progress
                     </p>
-                    <div className="relative h-6 bg-white/10 rounded-full overflow-hidden mb-2">
+                    <div className="relative h-6 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden mb-2">
                       <div
                         className="absolute inset-y-0 left-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full transition-all duration-500"
                         style={{ width: `${calculateProgress(loan)}%` }}
                       />
                     </div>
-                    <p className="text-center text-sm text-slate-400 font-medium">
+                    <p className="text-center text-sm text-gray-700 dark:text-white font-medium">
                       {calculateProgress(loan).toFixed(1)}% Complete
                     </p>
                   </div>
@@ -335,13 +335,13 @@ const BorrowerDashboard: React.FC = () => {
         {/* NFT Tab */}
         {activeTab === "nft" && (
           <div className="space-y-6">
-            <div className="glass rounded-2xl shadow-strong p-8 border border-white/10 backdrop-blur-xl overflow-hidden relative">
+            <div className="glass rounded-2xl shadow-strong p-8 border border-gray-300 dark:border-white/10 backdrop-blur-xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/20 to-blue-600/20 animate-gradient"></div>
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-8">
                   <div className="flex items-center gap-3">
                     <Award className="w-8 h-8 text-purple-400" />
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                       Remittance NFT #{nft.tokenId}
                     </h3>
                   </div>
@@ -355,11 +355,11 @@ const BorrowerDashboard: React.FC = () => {
                 <div className="grid md:grid-cols-3 gap-8 items-center">
                   <div className="flex justify-center">
                     <div className="relative">
-                      <div className="w-48 h-48 rounded-full glass flex flex-col items-center justify-center shadow-2xl border border-white/20">
+                      <div className="w-48 h-48 rounded-full glass flex flex-col items-center justify-center shadow-2xl border border-gray-300 dark:border-white/20">
                         <div className="text-6xl font-bold bg-gradient-to-br from-purple-400 to-indigo-400 bg-clip-text text-transparent">
                           {nft.reliabilityScore}
                         </div>
-                        <div className="text-sm font-semibold text-slate-400">
+                        <div className="text-sm font-semibold text-gray-700 dark:text-white">
                           Reliability Score
                         </div>
                       </div>
@@ -384,12 +384,12 @@ const BorrowerDashboard: React.FC = () => {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="glass bg-white/5 backdrop-blur-sm rounded-xl p-4 flex justify-between items-center border border-white/10"
+                        className="glass bg-white/5 dark:bg-white/5 backdrop-blur-sm rounded-xl p-4 flex justify-between items-center border border-gray-300 dark:border-white/10"
                       >
-                        <span className="text-slate-300 font-medium">
+                        <span className="text-gray-700 dark:text-white font-medium">
                           {stat.label}
                         </span>
-                        <span className="text-white font-bold text-xl">
+                        <span className="text-gray-900 dark:text-white font-bold text-xl">
                           {stat.value}
                         </span>
                       </div>
@@ -399,11 +399,11 @@ const BorrowerDashboard: React.FC = () => {
               </div>
             </div>
 
-            <div className="glass rounded-xl shadow-soft p-8 border border-white/10 backdrop-blur-xl">
-              <h4 className="text-xl font-bold text-white mb-4">
+            <div className="glass rounded-xl shadow-soft p-8 border border-gray-300 dark:border-white/10 backdrop-blur-xl">
+              <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 What does this mean?
               </h4>
-              <p className="text-slate-300 leading-relaxed mb-4">
+              <p className="text-gray-700 dark:text-white leading-relaxed mb-4">
                 Your reliability score is calculated based on your remittance
                 consistency over the last 24 months. A higher score means better
                 loan terms!
